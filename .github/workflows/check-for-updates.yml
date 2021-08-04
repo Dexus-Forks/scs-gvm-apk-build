@@ -55,7 +55,7 @@ jobs:
           ls -laht ./.checkupdates/
           echo "${NEWRELEASES}" > ./.checkupdates/latest_version
           cat ./.checkupdates/latest_version.sum
-          sha1sum -c ./.checkupdates/latest_version.sum 2&>1 >/dev/null
+          sha1sum -c ./.checkupdates/latest_version.sum
 
       - name: Check for updates - Step 2
         id: updates_available
