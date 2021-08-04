@@ -31,9 +31,9 @@ jobs:
       - uses: actions/cache@v2.1.4
         with:
           path: .checkupdates
-          key: ${{ runner.os }}-gmvversions-${{ github.run_id }}
+          key: ${{ runner.os }}-gvm-version-check-v1-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-gmvversions-
+            ${{ runner.os }}-gvm-version-check-v1-
 
       - name: Get Latest Versions
         run: |
