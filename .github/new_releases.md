@@ -1,6 +1,5 @@
 ---
 title: New Releases
-assignees: Dexus
 ---
 
 Hi,
