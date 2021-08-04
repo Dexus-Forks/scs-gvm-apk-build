@@ -47,21 +47,20 @@ jobs:
           ./get_releases.sh >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
-      - name: Check for updates
+      - name: Check for updates - Step 1
         id: updates
-        continue-on-error: true
         run: |
           echo "${NEWRELEASES}" > ./.checkupdates/latest_version
           sha1sum -c ./.checkupdates/latest_version.sum 2&>1 >/dev/null
 
-      - name: Check for updates
+      - name: Check for updates - Step 2
         id: updates_available
-        if: ${{ failure() }}
+        if: failure()
         run: |
           sha1sum ./.checkupdates/latest_version > ./.checkupdates/latest_version.sum
           echo "::set-output name=UPDATES_AVAILABLE::true"
 
-      - name: Check for updates
+      - name: Create Issue
         if: steps.updates_available.outputs.UPDATES_AVAILABLE == 'true'
         uses: JasonEtco/create-an-issue@v2
         env:
