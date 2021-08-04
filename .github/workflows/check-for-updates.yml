@@ -41,7 +41,7 @@ jobs:
             touch ./.checkupdates/latest_version
           fi
           if [ ! -e ./.checkupdates/latest_version.sum ]; then
-            touch ./.checkupdates/latest_version
+            touch ./.checkupdates/latest_version.sum
           fi
           chmod +x ./get_releases.sh
           echo 'NEWRELEASES<<EOF' >> $GITHUB_ENV
@@ -53,6 +53,7 @@ jobs:
         continue-on-error: true
         run: |
           echo "${NEWRELEASES}" > ./.checkupdates/latest_version
+          cat ./.checkupdates/latest_version.sum
           sha1sum -c ./.checkupdates/latest_version.sum 2&>1 >/dev/null
 
       - name: Check for updates - Step 2
