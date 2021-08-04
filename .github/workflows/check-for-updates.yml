@@ -28,12 +28,12 @@ jobs:
         run: |
           mkdir -p ./.checkupdates
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2
         with:
           path: .checkupdates
-          key: ${{ runner.os }}-gvm-version-check-v1-${{ github.run_id }}
+          key: ${{ runner.os }}-gvm-version-check-v2-${{ github.run_id }}
           restore-keys: |
-            ${{ runner.os }}-gvm-version-check-v1-
+            ${{ runner.os }}-gvm-version-check-v2-
 
       - name: Get Latest Versions
         run: |
@@ -65,7 +65,7 @@ jobs:
 
       - name: Create Issue
         uses: JasonEtco/create-an-issue@v2
-        if: ${{ steps.updates.outcome == 'failure' && steps.updates_available.UPDATES_AVAILABLE == 'true' }}
+        if: ${{ steps.updates.outcome == 'failure' && steps.updates_available.outputs.UPDATES_AVAILABLE == 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
