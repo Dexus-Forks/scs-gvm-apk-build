@@ -1,6 +1,5 @@
 ---
 title: New Releases
-labels: bug, enhancement
 assignees: Dexus
 ---
 
