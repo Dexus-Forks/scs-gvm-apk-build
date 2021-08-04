@@ -49,6 +49,7 @@ jobs:
 
       - name: Check for updates - Step 1
         id: updates
+        continue-on-error: true
         run: |
           echo "${NEWRELEASES}" > ./.checkupdates/latest_version
           sha1sum -c ./.checkupdates/latest_version.sum 2&>1 >/dev/null
@@ -61,7 +62,6 @@ jobs:
           echo "::set-output name=UPDATES_AVAILABLE::true"
 
       - name: Create Issue
-        if: steps.updates_available.outputs.UPDATES_AVAILABLE == 'true'
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
