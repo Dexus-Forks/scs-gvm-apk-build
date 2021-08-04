@@ -52,9 +52,7 @@ jobs:
         id: updates
         continue-on-error: true
         run: |
-          ls -laht ./.checkupdates/
           echo "${NEWRELEASES}" > ./.checkupdates/latest_version
-          cat ./.checkupdates/latest_version.sum
           sha1sum -c ./.checkupdates/latest_version.sum
 
       - name: Check for updates - Step 2
